@@ -5,7 +5,7 @@ metadata:
   name: wordpress
 spec:
   ports:
-      port: 5050
+      port: 50
       targetPort: 5050
   selector:
       app: wordpress
