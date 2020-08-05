@@ -1,2 +1,4 @@
 resources:
 - nginx.yaml
+- phpmyadmin.yaml
+- wordpress.yaml
