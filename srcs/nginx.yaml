@@ -43,18 +43,18 @@ spec:
     spec:
       containers:
       - image: nginx
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         name: nginx
         ports:
         - containerPort: 80
           name: http
         - containerPort: 443
           name: https
-        volumeMounts:
-        - name: nginx-config
-          mountPath: /etc/nginx/
-          subPath: nginx/nginx.conf
-      volumes:
-        - name: nginx-config
-          configMap:
-            name: confnginx
+#        volumeMounts:
+#        - name: nginx-config
+#          mountPath: /etc/nginx/
+#          subPath: nginx/nginx.conf
+#      volumes:
+#        - name: nginx-config
+#          configMap:
+#            name: confnginx
