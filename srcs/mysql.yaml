@@ -11,33 +11,34 @@ spec:
     app: mysql
     tier: mysql
   clusterIP: None
+#---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: mysql-persistent-storage
+#  labels:
+#    app: mysql
+#spec:
+#  accessModes:
+#    - ReadWriteOnce
+#  resources:
+#    requests:
+#      storage: 20Gi
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-pv-claim
-  labels:
-    app: mysql
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 20Gi
----
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
   labels:
     app: mysql
 spec:
+  replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: mysql
       tier: mysql
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
@@ -48,18 +49,23 @@ spec:
       - image: mysql
         name: mysql
         env:
-        - name: MYSQL_ROOT_PASSWORD
+        - name: username
           valueFrom:
             secretKeyRef:
-              name: username
-              key: password
+              name: db-user-pass
+              key: username.txt
+        - name: password
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: password.txt
         ports:
         - containerPort: 3306
           name: mysql
-        volumeMounts:
-        - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
-      volumes:
-      - name: mysql-persistent-storage
-        persistentVolumeClaim:
-          claimName: mysql-pv-claim
+#        volumeMounts:
+#        - name: mysql-persistent-storage
+#          mountPath: /var/lib/mysql
+#      volumes:
+#      - name: mysql-persistent-storage
+#        persistentVolumeClaim:
+#          claimName: mysql-persistent-storage
