@@ -50,11 +50,11 @@ spec:
           name: http
         - containerPort: 443
           name: https
-#        volumeMounts:
-#        - name: nginx-config
-#          mountPath: /etc/nginx/
-#          subPath: nginx/nginx.conf
-#      volumes:
-#        - name: nginx-config
-#          configMap:
-#            name: confnginx
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d/
+          subPath: default.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: confnginx

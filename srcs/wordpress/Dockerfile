@@ -13,3 +13,9 @@ RUN wget https://fr.wordpress.org/latest-fr_FR.tar.gz \
 RUN mv wordpress /var/www/.
 
 COPY wp-config.php /var/www/wp-config.php
+COPY setup.sh setup.sh
+RUN chmod 700 setup.sh
+
+EXPOSE 5050
+
+ENTRYPOINT ["./setup.sh"]

@@ -1,12 +1,12 @@
 #!/bin/sh
 
 mkdir -p /run/mysqld
-mysql_install_db --user=username --basedir=/usr
+mysql_install_db --user=$MYSQL_USER --basedir=/usr
 
 cat << EOF > admin.sql
-CREATE USER 'username'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION;
+CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
+GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 EOF
-mysqld --user=username --bootstrap --verbose=0 --skip-grant-tables=0 < admin.sql
-exec /usr/bin/mysqld --user=username --console
+mysqld --user=$MYSQL_USER --bootstrap --verbose=0 --skip-grant-tables=0 < admin.sql
+exec /usr/bin/mysqld --user=$MYSQL_USER --console

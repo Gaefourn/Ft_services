@@ -49,12 +49,12 @@ spec:
       - image: mysql
         name: mysql
         env:
-        - name: username
+        - name: MYSQL_USER
           valueFrom:
             secretKeyRef:
               name: db-user-pass
               key: username.txt
-        - name: password
+        - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: db-user-pass

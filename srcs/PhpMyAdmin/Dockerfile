@@ -12,5 +12,12 @@ RUN apk -f add php7-gettext \
 RUN wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
 RUN tar -xvf phpMyAdmin-4.9.0.1-all-languages.tar.gz
 RUN mv phpMyAdmin-4.9.0.1-all-languages /www
+COPY phpmyadmin.inc.php /www/config.inc.php
+COPY setup.sh setup.sh
+COPY nginx.conf /etc/nginx/nginx.conf
+RUN chmod 777 /etc/nginx/nginx.conf
+RUN chmod 700 setup.sh
 
 EXPOSE 5000
+
+ENTRYPOINT sh setup.sh
