@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sh delete.sh
+
 minikube config set vm-driver virtualbox
 
 minikube start --cpus=2 --memory 4000 --disk-size 11000 --extra-config=apiserver.service-node-port-range=1-35000
@@ -19,3 +21,5 @@ docker build -t grafana_alpine srcs/grafana/
 #kubectl create -f grafana-datasource-config.yaml
 kubectl apply -k srcs
 kubectl describe cm config -n metallb-system
+
+minikube dashboard
