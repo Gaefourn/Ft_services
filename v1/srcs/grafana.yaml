@@ -38,6 +38,6 @@ spec:
         - containerPort: 3000
         env:
         - name: GF_SECURITY_ADMIN_USER
-          value: root
+          value: username
         - name: GF_SECURITY_ADMIN_PASSWORD
-          value: root
+          value: password

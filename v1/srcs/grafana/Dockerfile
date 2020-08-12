@@ -8,7 +8,7 @@ RUN apk update && apk add bash curl wget grafana \
 
 COPY datasources/datasource.yaml /usr/share/grafana/conf/provisioning/datasources/
 
-COPY start.sh /
+COPY setup.sh /
 EXPOSE 3000
 
-CMD bash /start.sh
+CMD bash /setup.sh

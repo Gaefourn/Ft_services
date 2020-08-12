@@ -8,7 +8,6 @@ minikube start --cpus=2 --memory 4000 --disk-size 11000 --extra-config=apiserver
 minikube addons enable dashboard
 minikube addons enable metallb
 
-
 eval $(minikube docker-env)
 
 docker build -t nginx_alpine srcs/nginx/
@@ -16,6 +15,7 @@ docker build -t mysql_alpine srcs/mysql/
 docker build -t phpmyadmin_alpine srcs/phpmyadmin/
 docker build -t wordpress_alpine srcs/wordpress/
 docker build -t grafana_alpine srcs/grafana/
+docker build -t influxdb_alpine srcs/influxdb/
 
 
 #kubectl create -f grafana-datasource-config.yaml

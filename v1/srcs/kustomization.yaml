@@ -5,3 +5,4 @@ resources:
 - phpmyadmin.yaml
 - wordpress.yaml
 - grafana.yaml
+- influxdb.yaml
