@@ -3,8 +3,15 @@ FROM alpine:latest
 MAINTAINER Gaetan Fournier <gaefourn@student.42.fr>
 
 RUN apk update && \
-	apk add mysql mysql-client
+	apk add mysql mysql-client && \
+	rm -rf /var/cache/apk/*
 
+RUN	touch mysql
+RUN mkdir auth_pam_tool_dir
+RUN mkdir /auth_pam_tool_dir/auth_pam_tool
+RUN touch wordpress.sql
+
+COPY setup.sh /bin/setup.sh
 COPY my.cnf /etc/mysql/my.cnf
 COPY my.cnf /etc/my.cnf
 COPY my.cnf /var/lib/mysql/my.cnf

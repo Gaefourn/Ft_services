@@ -1,4 +1,3 @@
-
 FROM alpine:3.11.3
 
 RUN apk -f update && \
@@ -12,10 +11,11 @@ RUN wget https://fr.wordpress.org/latest-fr_FR.tar.gz \
 && tar -xvf latest-fr_FR.tar.gz
 RUN mv wordpress /var/www/.
 
+RUN touch /wordpress-dump.sql
+COPY nginx.conf /etc/nginx/nginx.conf
+RUN chmod 777 /etc/nginx/nginx.conf
+COPY start.sh start.sh
 COPY wp-config.php /var/www/wp-config.php
-COPY setup.sh setup.sh
-RUN chmod 700 setup.sh
 
-EXPOSE 5050
 
-ENTRYPOINT ["./setup.sh"]
+ENTRYPOINT ["/start.sh"]
