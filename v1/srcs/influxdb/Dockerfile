@@ -1,24 +1,19 @@
-FROM alpine:latest
 
-VOLUME [ "/var/lib/influxdb" ]
+FROM alpine
 
+RUN apk update && apk add bash influxdb \
+&& rm -rf /var/cache/apk/*
+
+#telegraf setup
+RUN mkdir /etc/telegraf \
+&& wget https://dl.influxdata.com/telegraf/releases/telegraf-1.13.3-static_linux_amd64.tar.gz \
+&& tar -C . -xzf telegraf-1.13.3-static_linux_amd64.tar.gz \
+&& chmod 775 telegraf/* \
+&& cp telegraf/telegraf /usr/bin/ \
+&& rm -rf /var/cache/apk/*
+COPY telegraf.conf /etc/telegraf/telegraf.conf
+
+COPY setup.sh /
 EXPOSE 8086
 
-# Installing all requirements and setting up supervisor and liveness
-RUN apk update && apk add --no-cache vim influxdb openrc
-COPY liveness.sh .
-RUN chmod u+x liveness.sh
-
-COPY telegraf.tar.gz .
-RUN tar -xzf telegraf.tar.gz
-
-RUN mkdir -m 755 /etc/telegraf
-COPY telegraf.conf /etc/telegraf
-
-RUN mkdir -p /etc/influxdb
-RUN chown -R influxdb:influxdb /etc/influxdb
-COPY influxdb.conf /etc/influxdb/influxdb.conf
-COPY setup.sh ./setup.sh
-RUN chmod u+x ./setup.sh
-
-ENTRYPOINT ./setup.sh
+CMD bash /setup.sh

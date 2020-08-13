@@ -53,14 +53,6 @@ spec:
         imagePullPolicy: Never
         securityContext:
           privileged: true
-        livenessProbe:
-            exec:
-              command:
-              - /bin/sh
-              - -c
-              - ./liveness.sh
-            initialDelaySeconds: 20
-            periodSeconds: 20
         ports:
         - name: influxdb
           containerPort: 8086

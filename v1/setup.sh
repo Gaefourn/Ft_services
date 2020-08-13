@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sh delete.sh
 
 minikube config set vm-driver virtualbox
 
