@@ -1,6 +1,6 @@
 <?php
 
-$cfg['blowfish_secret'] = '';
+$cfg['blowfish_secret'] = 'M9hMoYNI6egDdz0AC/AaW=h;xxhggpFq';
 
 /**
  * List of env variables
@@ -38,7 +38,7 @@ $cfg['Servers'][$i]['AllowNoPassword'] = true;
  */
 $cfg['Servers'][$i]['host'] = "mysql";
 $cfg['Servers'][$i]['port'] = "3306";
-$cfg['Servers'][$i]['user'] = "root";
+$cfg['Servers'][$i]['user'] = "user";
 $cfg['Servers'][$i]['password'] = "password";
 
 $cfg['UploadDir'] = '';

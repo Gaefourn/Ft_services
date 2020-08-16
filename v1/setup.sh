@@ -15,6 +15,7 @@ docker build -t phpmyadmin_alpine srcs/phpmyadmin/
 docker build -t wordpress_alpine srcs/wordpress/
 docker build -t grafana_alpine srcs/grafana/
 docker build -t influxdb_alpine srcs/influxdb/
+docker build -t ftps_alpine srcs/ftps
 
 
 #kubectl create -f grafana-datasource-config.yaml

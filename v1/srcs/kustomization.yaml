@@ -6,3 +6,4 @@ resources:
 - wordpress.yaml
 - grafana.yaml
 - influxdb.yaml
+- ftps.yaml

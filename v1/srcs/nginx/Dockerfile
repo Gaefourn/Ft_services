@@ -23,7 +23,7 @@ RUN echo "user:password" | chpasswd
 RUN echo "user:password = user:password"
 RUN	mkdir /etc/nginx/ssl
 RUN ssh-keygen -A
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Paris/O=42/CN=thverney' -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Paris/O=42/CN=Glaurent' -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 RUN echo 'SSH ft_services/nginx' > /etc/motd
 
 RUN rm /etc/nginx/nginx.conf
