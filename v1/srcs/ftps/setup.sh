@@ -1,5 +1,6 @@
 #!/bin/bash
 
+telegraf &
 { echo "www"; echo "www"; } | adduser www
 chown -R www /home/www
 chmod -R 775 /home/www 
