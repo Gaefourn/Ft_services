@@ -24,6 +24,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 RUN chmod 777 /etc/nginx/nginx.conf
 COPY start.sh start.sh
 COPY wp-config.php /var/www/wp-config.php
+COPY wordpress.sql wordpress.sql
 
 
 ENTRYPOINT ["/start.sh"]
