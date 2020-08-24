@@ -108,8 +108,8 @@ CREATE TABLE `wp_options` (
 INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
 (1, 'siteurl', 'http://192.168.99.104:5050', 'yes'),
 (2, 'home', 'http://192.168.99.104:5050', 'yes'),
-(3, 'blogname', 'tamere', 'yes'),
-(4, 'blogdescription', 'Un site utilisant WordPress', 'yes'),
+(3, 'blogname', 'FT_SERVICES', 'yes'),
+(4, 'blogdescription', 'UN PROJET INCROYABLE', 'yes'),
 (5, 'users_can_register', '0', 'yes'),
 (6, 'admin_email', 'lol@lol.lol', 'yes'),
 (7, 'start_of_week', '1', 'yes'),
