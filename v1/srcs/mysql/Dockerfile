@@ -1,7 +1,7 @@
 FROM alpine:3.11.3
 
 RUN apk update && \
-	apk add mysql mysql-client && \
+	apk add --no-cache mysql mysql-client mariadb-server-utils bash && \
 	rm -rf /var/cache/apk/*
 
 RUN	touch mysql

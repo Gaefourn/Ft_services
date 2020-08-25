@@ -34,6 +34,14 @@ spec:
       - name: grafana
         image: grafana_alpine
         imagePullPolicy: Never
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - -c
+            - pidof telegraf
+          initialDelaySeconds: 30
+          periodSeconds: 2
         ports:
         - containerPort: 3000
         env:
