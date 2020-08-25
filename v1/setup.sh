@@ -1,9 +1,23 @@
 #!/bin/bash
 
+if ! minikube status >/dev/null 2>&1
+then
+    if [[ $OSTYPE == "darwin"* ]]
+    then
+        if ! minikube start --vm-driver=virtualbox --cpus 3 --disk-size=30000mb --memory=3000mb --bootstrapper=kubeadm
+        then
+            echo Cannot start minikube!
+            exit 1
+        fi
+    else
+      if ! minikube start --vm-driver=docker --bootstrapper=kubeadm
+        then
+            echo Cannot start minikube!
+            exit 1
+        fi
+	fi
+fi
 
-minikube config set vm-driver virtualbox
-
-minikube start --cpus=2 --memory 4000 --disk-size 11000 --extra-config=apiserver.service-node-port-range=1-35000
 minikube addons enable dashboard
 minikube addons enable metallb
 minikube addons enable metrics-server
