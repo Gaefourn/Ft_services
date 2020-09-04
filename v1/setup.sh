@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [[ $OSTYPE == "linux-gnu"* ]]
-then
-	bash srcs/vm.sh
-fi
-
 if ! minikube status >/dev/null 2>&1
 then
     if [[ $OSTYPE == "darwin"* ]]
